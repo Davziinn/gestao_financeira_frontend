@@ -1,7 +1,9 @@
+
+
 export function App() {
   return (
-    <>
-      <h1>APP</h1>
-    </>
+    <div>
+      <h1>Welcome to the Finance App</h1>
+    </div>
   )
 }
