@@ -9,6 +9,8 @@ export const SidebarContainer = styled.aside`
   border-radius: 8px;
   margin-top: 12px;
   margin-left: 10px;
+  display: flex;
+  text-align: center;
 
   nav ul {
     list-style: none;
@@ -18,6 +20,9 @@ export const SidebarContainer = styled.aside`
   }
 
   a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     color: ${({ theme }) => theme.colors.textSecondary};
     text-decoration: none;
 
@@ -25,5 +30,6 @@ export const SidebarContainer = styled.aside`
       color: ${({ theme }) => theme.colors.textPrimary};
       font-weight: bold;
     }
-  }
+}
+
 `

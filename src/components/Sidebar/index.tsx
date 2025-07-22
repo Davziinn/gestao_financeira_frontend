@@ -1,15 +1,59 @@
-import { SidebarContainer } from "./styles";
+import { SidebarContainer } from "./styles"
+import DashboardIcon from '@mui/icons-material/Dashboard'
+import PaidIcon from '@mui/icons-material/Paid'
+import LeaderboardIcon from '@mui/icons-material/Leaderboard'
+import CategoryIcon from '@mui/icons-material/Category'
+import SettingsIcon from '@mui/icons-material/Settings'
+import NotificationsIcon from '@mui/icons-material/Notifications'
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 
 export function Sidebar() {
-    return(
+    return (
         <SidebarContainer>
             <nav>
                 <ul>
-                    <li><a href="/">Dashboard</a></li>
-                    <li><a href="/about">Transações</a></li>
-                    <li><a href="/contact">Relatórios</a></li>
-                    <li><a href="/profile">Categorias</a></li>
-                    <li><a href="/settings">Configurações</a></li>
+                    <li>
+                        <a href="/">
+                            <DashboardIcon />
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/transacoes">
+                            <AccountBalanceWalletIcon />
+                            <span>Transações</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/meta-financeira">
+                            <PaidIcon />
+                            <span>Meta Financeira</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/relatorios">
+                            <LeaderboardIcon />
+                            <span>Relatórios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/categorias">
+                            <CategoryIcon />
+                            <span>Categorias</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/notificacoes">
+                            <NotificationsIcon />
+                            <span>Notificações</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/configuracoes">
+                            <SettingsIcon />
+                            <span>Configurações</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </SidebarContainer>

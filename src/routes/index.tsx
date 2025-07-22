@@ -1,0 +1,25 @@
+import { Route, Routes } from "react-router-dom";
+import { DefaultLayout } from "../layouts";
+import { Dashboard } from "../pages/Dashboard";
+import { Transacoes } from "../pages/Transacoes";
+import { MetaFinanceira } from "../pages/MetaFinanceira";
+import { Relatorios } from "../pages/Relatorios";
+import { Categorias } from "../pages/Categorias";
+import { Notificacao } from "../pages/Notificacoes";
+import { Configuracoes } from "../pages/Configuracoes";
+
+export function AppRoutes () {
+    return (
+        <Routes>
+            <Route element={<DefaultLayout />}>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/transacoes" element={<Transacoes />} />
+                <Route path="/meta-financeira" element={<MetaFinanceira />} />
+                <Route path="/relatorios" element={<Relatorios />} />
+                <Route path="/categorias" element={<Categorias />} />
+                <Route path="/notificacoes" element={<Notificacao />} />
+                <Route path="/configuracoes" element={<Configuracoes />} />
+            </Route>
+        </Routes>
+    )
+}
