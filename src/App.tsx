@@ -1,9 +1,12 @@
+import { Header } from "./components/Header";
+import { DefaultLayout } from "./layouts";
 
 
 export function App() {
   return (
     <div>
-      <h1>Welcome to the Finance App</h1>
+      <Header />
+      <DefaultLayout />
     </div>
   )
 }

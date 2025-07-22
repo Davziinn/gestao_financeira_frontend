@@ -7,28 +7,22 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  html, body {
+  html, body, #root {
+    height: 100%;
+    font-family: ${({ theme }) => theme.fonts.regular};
     background-color: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.textPrimary};
-    font-family: ${({ theme }) => theme.fonts.regular};
-    -webkit-font-smoothing: antialiased;
-  }
-
-  input, button, textarea, select {
-    font: inherit;
-    color: ${({ theme }) => theme.colors.textPrimary};
-    background-color: ${({ theme }) => theme.colors.inputBackground};
-    border: 1px solid ${({ theme }) => theme.colors.border};
-    border-radius: 4px;
-    padding: 0.5rem 1rem;
   }
 
   button {
     cursor: pointer;
+    font-family: ${({ theme }) => theme.fonts.regular};
   }
 
-  a {
-    color: inherit;
-    text-decoration: none;
+  input, textarea {
+    font-family: ${({ theme }) => theme.fonts.regular};
+    background-color: ${({ theme }) => theme.colors.inputBackground};
+    color: ${({ theme }) => theme.colors.textPrimary};
+    border: 1px solid ${({ theme }) => theme.colors.border};
   }
 `
