@@ -11,10 +11,10 @@ export const TituloContainer = styled(Box)`
 
 export const CardsContainer = styled(Box)`
     display: flex;
-    flex-wrap: wrapflex;
+    flex-wrap: wrap;
     gap: 16px;
-    justify-content: space-betweenflex;
-    margin-top: -19pxflex;
+    justify-content: space-between;
+    margin-top: -24px;
 `
 
 export const CardsConteudo = styled(Card)`
@@ -24,8 +24,8 @@ export const CardsConteudo = styled(Card)`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-radius: 12px;
+    border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    background-color: #262626;
-    color: #FFFFFF;
+    background-color: #262626 !important;
+    color: #FFFFFF !important;
 `
