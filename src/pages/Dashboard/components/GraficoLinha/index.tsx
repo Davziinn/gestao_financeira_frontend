@@ -12,12 +12,12 @@ const data = [
 
 export const GraficoLinha = () => {
     return (
-        <Card sx={{ backgroundColor: '#262626', color: '#FFFFFF', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.2)', marginTop: '20px' }}>
+        <Card sx={{ backgroundColor: '#1A1A1A', color: '#FFFFFF', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.2)', marginTop: '20px', marginLeft: '-20px' }}>
             <CardContent>
                 <Typography variant="h6" sx={{ mb: 1 }}>
                     Receita no pedríodo
                 </Typography>
-                <ResponsiveContainer width="100%" height={200}>
+                <ResponsiveContainer width="100%" height={201}>
                     <AreaChart data={data}>
                         <defs>
                             <linearGradient id="corReceita" x1="0" y1="0" x2="0" y2="1">

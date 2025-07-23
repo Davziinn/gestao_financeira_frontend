@@ -4,7 +4,7 @@ export const SidebarContainer = styled.aside`
   width: 250px;
   background-color: ${({ theme }) => theme.colors.surface};
   padding: 2rem;
-  height: 487px;
+  height: 550px;
   color: ${({ theme }) => theme.colors.textPrimary};
   border-radius: 8px;
   margin-top: 12px;

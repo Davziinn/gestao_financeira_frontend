@@ -15,6 +15,7 @@ export const CardsContainer = styled(Box)`
     gap: 16px;
     justify-content: space-between;
     margin-top: -24px;
+    margin-left: -20px;
 `
 
 export const CardsConteudo = styled(Card)`
