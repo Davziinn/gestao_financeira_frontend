@@ -1,50 +1,21 @@
-import { Card, Typography, Box } from "@mui/material"
+import { Typography } from "@mui/material"
 import { green, red } from '@mui/material/colors'
 import PaidIcon from '@mui/icons-material/Paid';
+import { CardsContainer, CardsConteudo, TituloContainer } from "./styles";
 
 
 export function Dashboard() {
     return (
         <>
-            <Box
-                sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginBottom: "32px",
-                    marginTop: "-16px"
-                }}
-            >
+            <TituloContainer>
                 <Typography variant="h6" sx={{ fontWeight: "bold" }}>
                     Painel financeiro
                 </Typography>
                 <PaidIcon sx={{ fontSize: 32, color: green[500] }} />
-            </Box>
+            </TituloContainer>
 
-            <Box
-                sx={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: "16px",
-                    justifyContent: "space-between",
-                    marginTop: "-19px",
-                }}
-            >
-                {/* Saldo atual */}
-                <Card
-                    sx={{
-                        flex: 1,
-                        minWidth: "220px",
-                        padding: "24px",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                        borderRadius: "12px",
-                        boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-                        backgroundColor: "#262626",
-                        color: "#FFFFFF",
-                    }}
-                >
+            <CardsContainer>
+                <CardsConteudo>
                     <Typography variant="subtitle2" sx={{ opacity: 0.8 }}>
                         Saldo atual
                     </Typography>
@@ -60,23 +31,9 @@ export function Dashboard() {
                         </Typography>
                         em relação ao mês passado
                     </Typography>
-                </Card>
+                </CardsConteudo>
 
-                {/* Saídas */}
-                <Card
-                    sx={{
-                        flex: 1,
-                        minWidth: "220px",
-                        padding: "24px",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                        borderRadius: "12px",
-                        boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-                        backgroundColor: "#262626",
-                        color: "#FFFFFF",
-                    }}
-                >
+                <CardsConteudo>
                     <Typography variant="subtitle2" sx={{ opacity: 0.8 }}>
                         Saídas (mês)
                     </Typography>
@@ -95,23 +52,9 @@ export function Dashboard() {
                         </Typography>
                         em relação ao mês passado
                     </Typography>
-                </Card>
+                </CardsConteudo>
 
-                {/* Entradas */}
-                <Card
-                    sx={{
-                        flex: 1,
-                        minWidth: "220px",
-                        padding: "24px",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                        borderRadius: "12px",
-                        boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-                        backgroundColor: "#262626",
-                        color: "#FFFFFF",
-                    }}
-                >
+                <CardsConteudo>
                     <Typography variant="subtitle2" sx={{ opacity: 0.8 }}>
                         Entradas (mês)
                     </Typography>
@@ -130,23 +73,9 @@ export function Dashboard() {
                         </Typography>
                         em relação ao mês passado
                     </Typography>
-                </Card>
+                </CardsConteudo>
 
-                {/* Saldo dia */}
-                <Card
-                    sx={{
-                        flex: 1,
-                        minWidth: "220px",
-                        padding: "24px",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                        borderRadius: "12px",
-                        boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-                        backgroundColor: "#262626",
-                        color: "#FFFFFF",
-                    }}
-                >
+                <CardsConteudo>
                     <Typography variant="subtitle2" sx={{ opacity: 0.8 }}>
                         Saldo (dia)
                     </Typography>
@@ -162,8 +91,8 @@ export function Dashboard() {
                         </Typography>
                         em relação ao mês passado
                     </Typography>
-                </Card>
-            </Box>
+                </CardsConteudo>
+            </CardsContainer>
         </>
     )
 }
