@@ -11,6 +11,10 @@ export const SidebarContainer = styled.aside`
   margin-left: 10px;
   display: flex;
   text-align: center;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
 
   nav ul {
     list-style: none;
