@@ -1,3 +1,11 @@
-export function Categorias () {
-    return <h1>CATEGORIAS</h1>
+import { HeaderCategoria } from "./components/HeaderCategoria";
+import { TabelaCategoria } from "./components/TabelaCategoria";
+
+export function Categorias() {
+    return (
+        <div>
+            <HeaderCategoria />
+            <TabelaCategoria />
+        </div>
+    )
 }

@@ -7,10 +7,14 @@ import { Relatorios } from "../pages/Relatorios";
 import { Categorias } from "../pages/Categorias";
 import { Notificacao } from "../pages/Notificacoes";
 import { Configuracoes } from "../pages/Configuracoes";
+import { Cadastro } from "../pages/Cadastro";
+import { Login } from "../pages/Login";
 
-export function AppRoutes () {
+export function AppRoutes() {
     return (
         <Routes>
+            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/login" element={<Login />} />
             <Route element={<DefaultLayout />}>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/transacoes" element={<Transacoes />} />

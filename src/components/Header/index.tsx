@@ -1,5 +1,7 @@
-import { Button } from "@mui/material"
+import { Box, Button } from "@mui/material"
 import { HeaderContainer, HeaderTextGroup, HeaderSubtitle, HeaderTitle } from "./styles"
+import NotificationsIcon from '@mui/icons-material/Notifications'
+
 
 export function Header() {
     return (
@@ -8,7 +10,17 @@ export function Header() {
                 <HeaderTitle>Seja bem vindo(a), Davi!</HeaderTitle>
                 <HeaderSubtitle>O que deseja fazer hoje?</HeaderSubtitle>
             </HeaderTextGroup>
-            <Button variant="contained" color="error">SAIR</Button>
+            <Box
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 2,
+                    marginLeft: 'auto'
+                }}
+            >
+                <NotificationsIcon />
+                <Button variant="contained" color="error">SAIR</Button>
+            </Box>
         </HeaderContainer>
     )
 }

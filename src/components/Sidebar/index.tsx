@@ -4,7 +4,6 @@ import PaidIcon from '@mui/icons-material/Paid'
 import LeaderboardIcon from '@mui/icons-material/Leaderboard'
 import CategoryIcon from '@mui/icons-material/Category'
 import SettingsIcon from '@mui/icons-material/Settings'
-import NotificationsIcon from '@mui/icons-material/Notifications'
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 
 export function Sidebar() {
@@ -40,12 +39,6 @@ export function Sidebar() {
                         <a href="/categorias">
                             <CategoryIcon />
                             <span>Categorias</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/notificacoes">
-                            <NotificationsIcon />
-                            <span>Notificações</span>
                         </a>
                     </li>
                     <li>
