@@ -14,6 +14,8 @@ import {
 import EditIcon from "@mui/icons-material/Edit"
 import DeleteIcon from "@mui/icons-material/Delete"
 import { useState } from "react"
+import { useTransacaoContext } from "../../../../hooks/useTransacaoContext"
+import { DialogEditarTransacao } from "./DialogEditarTransacao"
 
 const dados = [
     { data: "31/03/23", descricao: "Salário", categoria: "Salário", valor: "R$ 4000", tipo: "Entrada", entrada: true },
@@ -25,10 +27,38 @@ const dados = [
 ]
 
 export function TabelaTransacoes() {
+    const [openDialog, setOpenDialog] = useState(false)
+    const [isFormValid, setIsFormValid] = useState(false)
+    const [resetFormTrigger, setResetFormTrigger] = useState(0)
+
+    const [descricao, setDescricao] = useState('')
+    const [categoria, setCategoria] = useState('')
+    const [tipo, setTipo] = useState('')
+    const [valor, setValor] = useState('')
+    const [data, setData] = useState('')
+
+    const handleEditTransaction = () => {
+        
+    }
+
+    const handleFormValidation = (isValid: boolean) => {
+        setIsFormValid(isValid)
+    }
+
+    const handleOpenDialog = () => {
+        setOpenDialog(true)
+    }
+
+    const handleCloseDialog = () => {
+        setOpenDialog(false)
+        setResetFormTrigger((prev) => prev + 1)
+        setIsFormValid(false)
+    }
+
     const [page, setPage] = useState(0)
     const rowsPerPage = 5
 
-    const dadosPagina = dados.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+    const { transacoes } = useTransacaoContext()
 
     const handleChangePage = (_: unknown, newPage: number) => {
         setPage(newPage)
@@ -68,7 +98,7 @@ export function TabelaTransacoes() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {dadosPagina.map((row, index) => (
+                        {transacoes.map((row, index) => (
                             <TableRow key={index}>
                                 <TableCell sx={{ color: "white" }}>{row.data}</TableCell>
                                 <TableCell sx={{ color: "white", wordBreak: 'break-word', overflowWrap: 'break-word', maxWidth: 200 }}>{row.descricao}</TableCell>
@@ -83,7 +113,9 @@ export function TabelaTransacoes() {
                                 </TableCell>
                                 <TableCell sx={{ color: "white" }}>{row.tipo}</TableCell>
                                 <TableCell>
-                                    <IconButton>
+                                    <IconButton
+                                        onClick={handleOpenDialog}
+                                    >
                                         <EditIcon sx={{ color: "white" }} />
                                     </IconButton>
                                     <IconButton>
@@ -110,6 +142,26 @@ export function TabelaTransacoes() {
                     ".MuiSvgIcon-root": { color: "white" },
                     backgroundColor: "#262626",
                 }}
+            />
+
+            <DialogEditarTransacao
+                id="nova-transacao"
+                open={openDialog}
+                onConfirm={handleEditTransaction}
+                onCancel={handleCloseDialog}
+                isFormValid={isFormValid}
+                onValidateForm={handleFormValidation}
+                resetFormTrigger={resetFormTrigger}
+                data={data}
+                setData={setData}
+                descricao={descricao}
+                setDescricao={setDescricao}
+                categoria={categoria}
+                setCategoria={setCategoria}
+                tipo={tipo}
+                setTipo={setTipo}
+                valor={valor}
+                setValor={setValor}
             />
         </Box>
     )

@@ -32,9 +32,16 @@ interface IDialogNovaTransacaoProps {
     setTipo: React.Dispatch<React.SetStateAction<string>>
     valor: string
     setValor: React.Dispatch<React.SetStateAction<string>>
+    transacaoParaEditar?: {
+    data: string
+    descricao: string
+    categoria: string
+    tipo: string
+    valor: string
+}
 }
 
-export const DialogNovaTransacao = ({
+export const DialogEditarTransacao = ({
     id,
     open = false,
     onConfirm,
@@ -51,7 +58,8 @@ export const DialogNovaTransacao = ({
     valor,
     setValor,
     data,
-    setData
+    setData,
+    transacaoParaEditar
 }: IDialogNovaTransacaoProps) => {
 
     useEffect(() => {
@@ -63,6 +71,17 @@ export const DialogNovaTransacao = ({
             data.trim() !== ''
         onValidateForm(isValid)
     }, [descricao, categoria, tipo, valor, data, onValidateForm])
+
+    useEffect(() => {
+    if (open && transacaoParaEditar) {
+        setDescricao(transacaoParaEditar.descricao)
+        setCategoria(transacaoParaEditar.categoria)
+        setTipo(transacaoParaEditar.tipo)
+        setValor(transacaoParaEditar.valor)
+        setData(transacaoParaEditar.data)
+    }
+}, [open, transacaoParaEditar])
+
 
     useEffect(() => {
         setDescricao('')
@@ -249,7 +268,7 @@ export const DialogNovaTransacao = ({
                             }
                         }}
                     >
-                        Cadastrar
+                        Editar
                     </Button>
                 </Box>
             </DialogContent>
