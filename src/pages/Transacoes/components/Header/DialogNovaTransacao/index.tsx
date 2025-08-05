@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import {
     Box,
     Button,
@@ -18,24 +18,41 @@ interface IDialogNovaTransacaoProps {
     id: string
     open?: boolean
     isFormValid: boolean
+    onConfirm: () => void
     onCancel: () => void
     onValidateForm: (isValid: boolean) => void
     resetFormTrigger: number
+    data: string
+    setData: React.Dispatch<React.SetStateAction<string>>
+    descricao: string
+    setDescricao: React.Dispatch<React.SetStateAction<string>>
+    categoria: string
+    setCategoria: React.Dispatch<React.SetStateAction<string>>
+    tipo: string
+    setTipo: React.Dispatch<React.SetStateAction<string>>
+    valor: string
+    setValor: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const DialogNovaTransacao = ({
     id,
     open = false,
+    onConfirm,
     onCancel,
     isFormValid,
     onValidateForm,
-    resetFormTrigger
+    resetFormTrigger,
+    categoria,
+    setCategoria,
+    descricao,
+    setDescricao,
+    tipo,
+    setTipo,
+    valor,
+    setValor,
+    data,
+    setData
 }: IDialogNovaTransacaoProps) => {
-    const [descricao, setDescricao] = useState('')
-    const [categoria, setCategoria] = useState('')
-    const [tipo, setTipo] = useState('')
-    const [valor, setValor] = useState('')
-    const [data, setData] = useState('')
 
     useEffect(() => {
         const isValid =
@@ -53,7 +70,7 @@ export const DialogNovaTransacao = ({
         setTipo('')
         setValor('')
         setData('')
-    }, [resetFormTrigger])
+    }, [resetFormTrigger, setCategoria, setData, setDescricao, setTipo, setValor])
 
     return (
         <Dialog
@@ -211,6 +228,7 @@ export const DialogNovaTransacao = ({
                     <Button
                         fullWidth
                         variant="contained"
+                        onClick={onConfirm}
                         disabled={!isFormValid}
                         sx={{
                             bgcolor: '#00B37E',

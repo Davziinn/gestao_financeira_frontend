@@ -1,3 +1,4 @@
+import { TransacaoProvider } from "../../contexts/TransactionContext"
 import { Filtros } from "./components/Filtros"
 import { Header } from "./components/Header"
 import { Resumo } from "./components/Resumo"
@@ -5,7 +6,7 @@ import { TabelaTransacoes } from "./components/TabelaTransacoes"
 
 export function Transacoes() {
     return (
-        <>
+        <TransacaoProvider>
             <Header />
             <div style={{ padding: '16px' }}>
                 <Filtros />
@@ -20,6 +21,6 @@ export function Transacoes() {
                     </div>
                 </div>
             </div>
-        </>
+        </TransacaoProvider>
     )
 }
