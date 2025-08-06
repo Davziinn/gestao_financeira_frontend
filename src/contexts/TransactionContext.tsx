@@ -6,8 +6,7 @@ interface ITransacao {
     descricao: string;
     categoria: string;
     valor: string;
-    tipo: string;
-    entrada: boolean;
+    tipo: "entrada" | "saida";
 }
 
 interface ITransacaoContextProps {

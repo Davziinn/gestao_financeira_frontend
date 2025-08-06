@@ -38,7 +38,7 @@ export function TabelaTransacoes() {
     const [data, setData] = useState('')
 
     const handleEditTransaction = () => {
-        
+
     }
 
     const handleFormValidation = (isValid: boolean) => {
@@ -105,11 +105,11 @@ export function TabelaTransacoes() {
                                 <TableCell sx={{ color: "white" }}>{row.categoria}</TableCell>
                                 <TableCell
                                     sx={{
-                                        color: row.entrada ? "#4CAF50" : "#EF4444",
+                                        color: row.tipo === "Entrada" ? "#4CAF50" : "#EF4444",
                                         fontWeight: "bold"
                                     }}
                                 >
-                                    {row.valor}
+                                    {row.tipo === "Saida" ? `- ${row.valor}` : row.valor}
                                 </TableCell>
                                 <TableCell sx={{ color: "white" }}>{row.tipo}</TableCell>
                                 <TableCell>
