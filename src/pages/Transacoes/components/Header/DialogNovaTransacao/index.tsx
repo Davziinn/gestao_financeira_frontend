@@ -162,6 +162,7 @@ export const DialogNovaTransacao = ({
                         <MenuItem value="Moradia">Moradia</MenuItem>
                         <MenuItem value="Alimentação">Alimentação</MenuItem>
                         <MenuItem value="Transporte">Transporte</MenuItem>
+                        <MenuItem value="Transporte">Salário</MenuItem>
                     </TextField>
                 </Box>
 

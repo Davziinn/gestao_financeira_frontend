@@ -32,15 +32,14 @@ export const Header = () => {
 
     const handleAddTransaction = () => {
         const novaTransacao = {
+            id: crypto.randomUUID(),
             data,
             descricao,
             categoria,
             valor,
-            tipo,
-            entrada: tipo === 'entrada'
+            tipo: (tipo === "Entrada" ? "Entrada" : "Saida") as "Entrada" | "Saida",
         }
-        
-        console.log(novaTransacao)
+
         adicionarTransacao(novaTransacao)
         handleCloseDialog()
     }

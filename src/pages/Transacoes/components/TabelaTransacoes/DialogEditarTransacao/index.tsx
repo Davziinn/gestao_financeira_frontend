@@ -16,6 +16,7 @@ import {
 
 interface IDialogNovaTransacaoProps {
     id: string
+    setId: React.Dispatch<React.SetStateAction<string>>
     open?: boolean
     isFormValid: boolean
     onConfirm: () => void
@@ -33,16 +34,18 @@ interface IDialogNovaTransacaoProps {
     valor: string
     setValor: React.Dispatch<React.SetStateAction<string>>
     transacaoParaEditar?: {
-    data: string
-    descricao: string
-    categoria: string
-    tipo: string
-    valor: string
-}
+        id: string
+        data: string
+        descricao: string
+        categoria: string
+        tipo: string
+        valor: string
+    }
 }
 
 export const DialogEditarTransacao = ({
     id,
+    setId,
     open = false,
     onConfirm,
     onCancel,
@@ -62,6 +65,7 @@ export const DialogEditarTransacao = ({
     transacaoParaEditar
 }: IDialogNovaTransacaoProps) => {
 
+
     useEffect(() => {
         const isValid =
             descricao.trim() !== '' &&
@@ -73,23 +77,26 @@ export const DialogEditarTransacao = ({
     }, [descricao, categoria, tipo, valor, data, onValidateForm])
 
     useEffect(() => {
-    if (open && transacaoParaEditar) {
-        setDescricao(transacaoParaEditar.descricao)
-        setCategoria(transacaoParaEditar.categoria)
-        setTipo(transacaoParaEditar.tipo)
-        setValor(transacaoParaEditar.valor)
-        setData(transacaoParaEditar.data)
-    }
-}, [open, transacaoParaEditar])
+        if (open && transacaoParaEditar) {
+            setId(transacaoParaEditar.id)
+            setDescricao(transacaoParaEditar.descricao)
+            setCategoria(transacaoParaEditar.categoria)
+            setTipo(transacaoParaEditar.tipo)
+            setValor(transacaoParaEditar.valor)
+            setData(transacaoParaEditar.data)
+        }
+    }, [open, transacaoParaEditar, setId, setDescricao, setCategoria, setTipo, setValor, setData])
+
 
 
     useEffect(() => {
+        setId('')
         setDescricao('')
         setCategoria('')
         setTipo('')
         setValor('')
         setData('')
-    }, [resetFormTrigger, setCategoria, setData, setDescricao, setTipo, setValor])
+    }, [resetFormTrigger, setCategoria, setData, setDescricao, setId, setTipo, setValor])
 
     return (
         <Dialog

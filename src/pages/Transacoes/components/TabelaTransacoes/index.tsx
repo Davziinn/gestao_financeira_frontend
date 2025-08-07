@@ -16,6 +16,8 @@ import DeleteIcon from "@mui/icons-material/Delete"
 import { useState } from "react"
 import { useTransacaoContext } from "../../../../hooks/useTransacaoContext"
 import { DialogEditarTransacao } from "./DialogEditarTransacao"
+import type { ITransacao } from "../../../../contexts/TransactionContext"
+import { DialogDeletarTransacao } from "./DialogDeletarTransacao"
 
 const dados = [
     { data: "31/03/23", descricao: "Salário", categoria: "Salário", valor: "R$ 4000", tipo: "Entrada", entrada: true },
@@ -27,32 +29,65 @@ const dados = [
 ]
 
 export function TabelaTransacoes() {
-    const [openDialog, setOpenDialog] = useState(false)
+    const [openDialogEditar, setOpenDialogEditar] = useState(false)
+    const [openDialogDeletar, setOpenDialogDeletar] = useState(false)
     const [isFormValid, setIsFormValid] = useState(false)
     const [resetFormTrigger, setResetFormTrigger] = useState(0)
 
+    const [id, setId] = useState('')
     const [descricao, setDescricao] = useState('')
     const [categoria, setCategoria] = useState('')
     const [tipo, setTipo] = useState('')
     const [valor, setValor] = useState('')
     const [data, setData] = useState('')
 
-    const handleEditTransaction = () => {
+    const [transacaoParaDeletar, setTransacaoParaDeletar] = useState<ITransacao | undefined>(undefined)
 
+    const [transacaoParaEditar, setTransacaoParaEditar] = useState<ITransacao | undefined>(undefined)
+
+    const { editarTransacao, deletarTransacao } = useTransacaoContext()
+
+    const handleEditTransaction = () => {
+        const novaTransacao = {
+            id,
+            data,
+            descricao,
+            categoria,
+            valor,
+            tipo: (tipo === "Entrada" ? "Entrada" : "Saida") as "Entrada" | "Saida",
+        }
+
+        editarTransacao(novaTransacao)
+        handleCloseDialog()
     }
 
     const handleFormValidation = (isValid: boolean) => {
         setIsFormValid(isValid)
     }
 
-    const handleOpenDialog = () => {
-        setOpenDialog(true)
+    const handleOpenDialogEditar = (transacao: ITransacao) => {
+        setTransacaoParaEditar(transacao)
+        setOpenDialogEditar(true)
+    }
+
+
+    const handleDeletarTransaction = () => {
+        if (transacaoParaDeletar) {
+            deletarTransacao(transacaoParaDeletar.id)
+            handleCloseDialog()
+        }
     }
 
     const handleCloseDialog = () => {
-        setOpenDialog(false)
+        setOpenDialogEditar(false)
+        setOpenDialogDeletar(false)
         setResetFormTrigger((prev) => prev + 1)
         setIsFormValid(false)
+    }
+
+    const handleOpenDialogDeletar = (transacao: ITransacao) => {
+        setTransacaoParaDeletar(transacao)
+        setOpenDialogDeletar(true)
     }
 
     const [page, setPage] = useState(0)
@@ -103,22 +138,24 @@ export function TabelaTransacoes() {
                                 <TableCell sx={{ color: "white" }}>{row.data}</TableCell>
                                 <TableCell sx={{ color: "white", wordBreak: 'break-word', overflowWrap: 'break-word', maxWidth: 200 }}>{row.descricao}</TableCell>
                                 <TableCell sx={{ color: "white" }}>{row.categoria}</TableCell>
-                                <TableCell
-                                    sx={{
-                                        color: row.tipo === "Entrada" ? "#4CAF50" : "#EF4444",
-                                        fontWeight: "bold"
-                                    }}
-                                >
+                                <TableCell sx={{ color: "white" }}>
                                     {row.tipo === "Saida" ? `- ${row.valor}` : row.valor}
                                 </TableCell>
-                                <TableCell sx={{ color: "white" }}>{row.tipo}</TableCell>
+                                <TableCell sx={{
+                                    color: row.tipo === "Entrada" ? "#4CAF50" : "#EF4444",
+                                    fontWeight: "bold"
+                                }}>
+                                    {row.tipo}
+                                </TableCell>
                                 <TableCell>
                                     <IconButton
-                                        onClick={handleOpenDialog}
+                                        onClick={() => handleOpenDialogEditar(row)}
                                     >
                                         <EditIcon sx={{ color: "white" }} />
                                     </IconButton>
-                                    <IconButton>
+                                    <IconButton
+                                        onClick={() => handleOpenDialogDeletar(row)}
+                                    >
                                         <DeleteIcon sx={{ color: "white" }} />
                                     </IconButton>
                                 </TableCell>
@@ -146,7 +183,8 @@ export function TabelaTransacoes() {
 
             <DialogEditarTransacao
                 id="nova-transacao"
-                open={openDialog}
+                setId={setId}
+                open={openDialogEditar}
                 onConfirm={handleEditTransaction}
                 onCancel={handleCloseDialog}
                 isFormValid={isFormValid}
@@ -162,7 +200,17 @@ export function TabelaTransacoes() {
                 setTipo={setTipo}
                 valor={valor}
                 setValor={setValor}
+                transacaoParaEditar={transacaoParaEditar}
             />
+
+            <DialogDeletarTransacao
+                id="dialog-deletar"
+                open={openDialogDeletar}
+                onCancel={handleCloseDialog}
+                onConfirm={handleDeletarTransaction}
+                nometransacao={transacaoParaDeletar?.descricao || ""}
+            />
+
         </Box>
     )
 }
