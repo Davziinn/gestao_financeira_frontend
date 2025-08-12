@@ -333,7 +333,7 @@ export const DialogNovaTransacao = ({
               },
             }}
           >
-            Cancelar
+            CANCELAR
           </Button>
 
           <Button
@@ -345,7 +345,7 @@ export const DialogNovaTransacao = ({
               bgcolor: "#00B37E",
               color: "#fff",
               fontWeight: 600,
-              fontSize: "1rem",
+              fontSize: "0.9rem",
               borderRadius: 2,
               textTransform: "none",
               py: 1.25,
@@ -360,7 +360,7 @@ export const DialogNovaTransacao = ({
               },
             }}
           >
-            Cadastrar
+            CADASTRAR TRANSAÇÃO
           </Button>
         </Box>
       </DialogContent>
