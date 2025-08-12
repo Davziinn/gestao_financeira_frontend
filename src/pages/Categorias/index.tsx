@@ -1,11 +1,12 @@
+import { Box } from "@mui/material";
 import { HeaderCategoria } from "./components/HeaderCategoria";
 import { TabelaCategoria } from "./components/TabelaCategoria";
 
 export function Categorias() {
     return (
-        <div>
+        <Box>
             <HeaderCategoria />
             <TabelaCategoria />
-        </div>
+        </Box>
     )
 }

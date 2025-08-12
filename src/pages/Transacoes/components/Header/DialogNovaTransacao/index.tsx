@@ -349,7 +349,7 @@ export const DialogNovaTransacao = ({
               bgcolor: "#00B37E",
               color: "#fff",
               fontWeight: 600,
-              fontSize: "0.9rem",
+              fontSize: "0.85rem",
               borderRadius: 2,
               textTransform: "none",
               py: 1.25,
