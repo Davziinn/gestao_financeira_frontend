@@ -1,12 +1,21 @@
 import { Box, Button, Typography } from "@mui/material";
 import { DialogAdicionarCategoria } from "../Dialogs/DialogAdicionarCategoria/DialogAdicionarCategoria";
 import { useState } from "react";
+import { useCategoriaContext } from "../../../../hooks/useCategoriaContext";
 
 export function HeaderCategoria() {
   const [openDialogAdicionar, setOpenDialogAdicionar] = useState(false);
 
+  const { adicionarCategoria } = useCategoriaContext();
+
   const handleCloseDialogAdicionar = () => {
     setOpenDialogAdicionar(false);
+  };
+
+  const handleAddCategoria = (nome: string, tipo: "entrada" | "saida") => {
+    adicionarCategoria({ nome, tipo });
+
+    handleCloseDialogAdicionar();
   };
 
   return (
@@ -35,6 +44,9 @@ export function HeaderCategoria() {
         id="adicionar-categoria"
         open={openDialogAdicionar}
         onCancel={handleCloseDialogAdicionar}
+        onConfirm={(nome: string, tipo: "entrada" | "saida") =>
+          handleAddCategoria(nome, tipo)
+        }
       />
     </Box>
   );

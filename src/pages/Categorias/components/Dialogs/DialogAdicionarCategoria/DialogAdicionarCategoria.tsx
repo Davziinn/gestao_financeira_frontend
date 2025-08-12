@@ -12,24 +12,33 @@ import {
   FormControlLabel,
   Radio,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CategoryIcon from "@mui/icons-material/Category";
 
 interface DialogAdicionarCategoriaProps {
   id: string;
   open: boolean;
   onCancel: () => void;
+  onConfirm: (nome: string, tipo: "entrada" | "saida") => void;
 }
 
 export const DialogAdicionarCategoria = ({
   id,
   open = false,
   onCancel,
+  onConfirm,
 }: DialogAdicionarCategoriaProps) => {
   const [tipo, setTipo] = useState<"entrada" | "saida">("entrada");
   const [nome, setNome] = useState("");
 
   const isFormValid = nome.trim() !== "";
+
+  useEffect(() => {
+    if (open) {
+      setNome("");
+      setTipo("entrada");
+    }
+  }, [open]);
 
   return (
     <Dialog
@@ -168,7 +177,7 @@ export const DialogAdicionarCategoria = ({
               onChange={(e) => setTipo(e.target.value as "entrada" | "saida")}
             >
               <FormControlLabel
-                value="Entrada"
+                value="entrada"
                 control={
                   <Radio
                     sx={{
@@ -180,7 +189,7 @@ export const DialogAdicionarCategoria = ({
                 label="Entrada"
               />
               <FormControlLabel
-                value="Saida"
+                value="saida"
                 control={
                   <Radio
                     sx={{
@@ -224,12 +233,13 @@ export const DialogAdicionarCategoria = ({
         <Button
           variant="contained"
           fullWidth
+          onClick={() => onConfirm(nome, tipo)}
           disabled={!isFormValid}
           sx={{
             bgcolor: "#00B37E",
             color: "#fff",
             fontWeight: 600,
-            fontSize: "0.9rem",
+            fontSize: "0.85rem",
             borderRadius: 2,
             textTransform: "none",
             py: 1.5,
@@ -246,7 +256,7 @@ export const DialogAdicionarCategoria = ({
             },
           }}
         >
-          CADATRAR CATEGORIA
+          CADASTRAR CATEGORIA
         </Button>
       </Box>
     </Dialog>

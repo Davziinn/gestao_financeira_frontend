@@ -16,6 +16,7 @@ import {
   InputAdornment,
   Collapse,
 } from "@mui/material";
+import { useCategoriaContext } from "../../../../../hooks/useCategoriaContext";
 
 interface IDialogNovaTransacaoProps {
   id: string;
@@ -58,6 +59,8 @@ export const DialogNovaTransacao = ({
 }: IDialogNovaTransacaoProps) => {
   const [destinarParaMeta, setDestinarParaMeta] = useState(false);
   const [valorMeta, setValorMeta] = useState("");
+
+  const { categorias } = useCategoriaContext();
 
   useEffect(() => {
     const isValid =
@@ -195,10 +198,11 @@ export const DialogNovaTransacao = ({
               },
             }}
           >
-            <MenuItem value="Moradia">Moradia</MenuItem>
-            <MenuItem value="Alimentação">Alimentação</MenuItem>
-            <MenuItem value="Transporte">Transporte</MenuItem>
-            <MenuItem value="Salário">Salário</MenuItem>
+            {categorias.map((categoria) => (
+              <MenuItem key={categoria.id} value={categoria.nome}>
+                {categoria.nome}
+              </MenuItem>
+            ))}
           </TextField>
         </Box>
 

@@ -14,7 +14,7 @@ interface ITransacaoContextProps {
     transacoes: ITransacao[]
     adicionarTransacao: (transacao: ITransacao) => void
     editarTransacao: (transacaoAtualizada: ITransacao) => void
-    deletarTransacao: (id: string) => void // <- aqui
+    deletarTransacao: (id: string) => void
 }
 
 export const TransacaoContext = createContext<ITransacaoContextProps | undefined>(undefined)

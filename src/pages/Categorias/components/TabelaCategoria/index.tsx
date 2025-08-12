@@ -8,51 +8,49 @@ import {
   TableHead,
   TableRow,
   Typography,
-  Paper
-} from '@mui/material'
-import EditIcon from '@mui/icons-material/Edit'
-import DeleteIcon from '@mui/icons-material/Delete'
-
-const categorias = [
-  { nome: 'Salário', tipo: 'Entrada' },
-  { nome: 'Aluguel', tipo: 'Saída' },
-  { nome: 'Mercado', tipo: 'Saída' },
-  { nome: 'Transporte', tipo: 'Saída' },
-  { nome: 'Lazer', tipo: 'Entrada' },
-  { nome: 'Freela', tipo: 'Entrada' }
-]
+  Paper,
+} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useCategoriaContext } from "../../../../hooks/useCategoriaContext";
 
 export const TabelaCategoria = () => {
+  const { categorias } = useCategoriaContext();
+
   return (
-    <TableContainer component={Paper} sx={{ backgroundColor: '#111', borderRadius: 2, marginTop: "16px" }}>
+    <TableContainer
+      component={Paper}
+      sx={{ backgroundColor: "#111", borderRadius: 2, marginTop: "16px" }}
+    >
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell sx={{ color: '#fff' }}>Categoria</TableCell>
-            <TableCell sx={{ color: '#fff' }}>Tipo</TableCell>
-            <TableCell sx={{ color: '#fff' }}>Ações</TableCell>
+            <TableCell sx={{ color: "#fff" }}>Categoria</TableCell>
+            <TableCell sx={{ color: "#fff" }}>Tipo</TableCell>
+            <TableCell sx={{ color: "#fff" }}>Ações</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {categorias.map((categoria, index) => (
             <TableRow key={index}>
-              <TableCell sx={{ color: '#fff' }}>{categoria.nome}</TableCell>
+              <TableCell sx={{ color: "#fff" }}>{categoria.nome}</TableCell>
               <TableCell>
                 <Typography
                   sx={{
-                    color: categoria.tipo === 'Saída' ? '#f44336' : '#4CAF50',
-                    fontWeight: 500
+                    color: categoria.tipo === "saida" ? "#f44336" : "#4CAF50",
+                    fontWeight: 500,
+                    textTransform: "capitalize",
                   }}
                 >
-                  {categoria.tipo === 'Entrada' && categoria.nome === 'Lazer' ? 'Entda' : categoria.tipo}
+                  {categoria.tipo}
                 </Typography>
               </TableCell>
               <TableCell>
-                <Box sx={{ display: 'flex', gap: 1 }}>
-                  <IconButton size="small">
+                <Box sx={{ display: "flex", gap: 1 }}>
+                  <IconButton size="small" aria-label="editar categoria">
                     <EditIcon sx={{ color: "#7D7E7F" }} />
                   </IconButton>
-                  <IconButton size="small">
+                  <IconButton size="small" aria-label="deletar categoria">
                     <DeleteIcon sx={{ color: "#7D7E7F" }} />
                   </IconButton>
                 </Box>
@@ -62,5 +60,5 @@ export const TabelaCategoria = () => {
         </TableBody>
       </Table>
     </TableContainer>
-  )
-}
+  );
+};
