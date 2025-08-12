@@ -8,7 +8,7 @@ export function MetaFinanceira() {
             <AlertaProgresso />
             <Box display="flex" justifyContent="space-between" alignItems="center" mt={4} mb={2}>
                 <Typography variant="h5" fontWeight={600}>Metas</Typography>
-                <Button variant="contained" sx={{ backgroundColor: '#00c776', textTransform: 'none' }}>
+                <Button variant="contained" sx={{ backgroundColor: '#4CAF50', textTransform: 'none' }}>
                     + Nova meta
                 </Button>
             </Box>
