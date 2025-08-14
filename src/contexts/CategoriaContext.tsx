@@ -11,6 +11,7 @@ interface CategoriaContextProps {
   categorias: Categoria[];
   adicionarCategoria: (categoria: Omit<Categoria, "id">) => void;
   editarCategoria: (categoriaEditada: Categoria) => void;
+  deletarCategoria: (id: string) => void;
 }
 
 export const CategoriaContext = createContext<
@@ -39,9 +40,13 @@ export const CategoriaProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
+  const deletarCategoria = (id: string) => {
+    setCategorias((prev) => prev.filter((c) => c.id != id));
+  };
+
   return (
     <CategoriaContext.Provider
-      value={{ categorias, adicionarCategoria, editarCategoria }}
+      value={{ categorias, adicionarCategoria, editarCategoria, deletarCategoria }}
     >
       {children}
     </CategoriaContext.Provider>

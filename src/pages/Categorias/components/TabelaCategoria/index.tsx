@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import {
   Box,
   IconButton,
@@ -14,8 +13,9 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useCategoriaContext } from "../../../../hooks/useCategoriaContext";
-import { DialogEditarCategoria } from "../Dialogs/DialogEditarCategoria/DialogEditarCategoria";
+import { DialogEditarCategoria } from "../Dialogs/DialogEditarCategoria";
 import { useState } from "react";
+import { DialogExcluirCategoria } from "../Dialogs/DialogExcluirCategoria";
 
 interface Categoria {
   id: string;
@@ -25,23 +25,32 @@ interface Categoria {
 
 export const TabelaCategoria = () => {
   const [openDialogEditar, setOpenDialogEditar] = useState(false);
-  const [categoriaParaEditar, setCategoriaParaEditar] = useState<Categoria | undefined>(undefined);
+  const [openDialogExcluir, setOpenDialogExcluir] = useState(false);
 
-  // Aqui você só precisa da função `editarCategoria` do contexto
-  const { categorias, editarCategoria } = useCategoriaContext();
+  const [categoriaParaEditar, setCategoriaParaEditar] = useState<
+    Categoria | undefined
+  >(undefined);
+  const [categoriaParaExcluir, setCategoriaParaExcluir] = useState<
+    Categoria | undefined
+  >(undefined);
+
+  const { categorias, editarCategoria, deletarCategoria } =
+    useCategoriaContext();
 
   const handleOpenDialogEditar = (categoria: Categoria) => {
     setCategoriaParaEditar(categoria);
     setOpenDialogEditar(true);
   };
 
-  const handleCloseDialogEditar = () => {
+  const handleCloseDialogs = () => {
     setOpenDialogEditar(false);
-    setCategoriaParaEditar(undefined); // Boa prática: limpa o estado ao fechar
+    setOpenDialogExcluir(false);
   };
 
-  // Esta função recebe os novos dados do modal
-  const handleConfirmEdit = (nomeAtualizado: string, tipoAtualizado: "entrada" | "saida") => {
+  const handleConfirmEdit = (
+    nomeAtualizado: string,
+    tipoAtualizado: "entrada" | "saida"
+  ) => {
     if (categoriaParaEditar) {
       const categoriaAtualizada = {
         id: categoriaParaEditar.id,
@@ -49,7 +58,13 @@ export const TabelaCategoria = () => {
         tipo: tipoAtualizado,
       };
       editarCategoria(categoriaAtualizada);
-      handleCloseDialogEditar();
+      handleCloseDialogs();
+    }
+  };
+
+  const handleConfirmDelete = () => {
+    if (categoriaParaExcluir) {
+      deletarCategoria(categoriaParaExcluir.id);
     }
   };
 
@@ -91,7 +106,14 @@ export const TabelaCategoria = () => {
                     >
                       <EditIcon sx={{ color: "#7D7E7F" }} />
                     </IconButton>
-                    <IconButton size="small" aria-label="deletar categoria">
+                    <IconButton
+                      size="small"
+                      aria-label="deletar categoria"
+                      onClick={() => {
+                        setCategoriaParaExcluir(categoria);
+                        setOpenDialogExcluir(true);
+                      }}
+                    >
                       <DeleteIcon sx={{ color: "#7D7E7F" }} />
                     </IconButton>
                   </Box>
@@ -104,9 +126,17 @@ export const TabelaCategoria = () => {
       <DialogEditarCategoria
         id="editar-categoria"
         open={openDialogEditar}
-        onConfirm={handleConfirmEdit} // Agora passamos a nova função de confirmação
-        onCancel={handleCloseDialogEditar}
+        onConfirm={handleConfirmEdit}
+        onCancel={handleCloseDialogs}
         categoriaParaEditar={categoriaParaEditar}
+      />
+
+      <DialogExcluirCategoria
+        id="excluir-categoria"
+        open={openDialogExcluir}
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCloseDialogs}
+        nomeCategoria={categoriaParaExcluir?.nome || ""}
       />
     </>
   );

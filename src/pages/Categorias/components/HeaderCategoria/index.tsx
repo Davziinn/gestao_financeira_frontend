@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import { DialogAdicionarCategoria } from "../Dialogs/DialogAdicionarCategoria/DialogAdicionarCategoria";
+import { DialogAdicionarCategoria } from "../Dialogs/DialogAdicionarCategoria";
 import { useState } from "react";
 import { useCategoriaContext } from "../../../../hooks/useCategoriaContext";
 
