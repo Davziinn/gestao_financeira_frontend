@@ -14,6 +14,7 @@ import {
   RadioGroup,
   TextField,
 } from "@mui/material";
+import { useCategoriaContext } from "../../../../../hooks/useCategoriaContext";
 
 interface IDialogNovaTransacaoProps {
   id: string;
@@ -65,6 +66,8 @@ export const DialogEditarTransacao = ({
   setData,
   transacaoParaEditar,
 }: IDialogNovaTransacaoProps) => {
+  const { categorias } = useCategoriaContext();
+
   useEffect(() => {
     const isValid =
       descricao.trim() !== "" &&
@@ -78,13 +81,10 @@ export const DialogEditarTransacao = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let inputValue = e.target.value;
 
-    // Remove tudo que não é número
     inputValue = inputValue.replace(/\D/g, "");
 
-    // Converte para número em centavos
     const numero = parseFloat(inputValue) / 100;
 
-    // Formata para moeda brasileira
     if (!isNaN(numero)) {
       const formatado = numero.toLocaleString("pt-BR", {
         style: "currency",
@@ -222,9 +222,11 @@ export const DialogEditarTransacao = ({
               },
             }}
           >
-            <MenuItem value="Moradia">Moradia</MenuItem>
-            <MenuItem value="Alimentação">Alimentação</MenuItem>
-            <MenuItem value="Transporte">Transporte</MenuItem>
+            {categorias.map((categoria) => (
+              <MenuItem key={categoria.id} value={categoria.nome}>
+                {categoria.nome}
+              </MenuItem>
+            ))}
           </TextField>
         </Box>
 

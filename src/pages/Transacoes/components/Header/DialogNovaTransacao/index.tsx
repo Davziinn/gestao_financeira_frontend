@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   Box,
   Button,
@@ -12,8 +12,6 @@ import {
   Radio,
   RadioGroup,
   TextField,
-  Checkbox,
-  Collapse,
   DialogActions,
 } from "@mui/material";
 import { useCategoriaContext } from "../../../../../hooks/useCategoriaContext";
@@ -57,8 +55,6 @@ export const DialogNovaTransacao = ({
   data,
   setData,
 }: IDialogNovaTransacaoProps) => {
-  const [destinarParaMeta, setDestinarParaMeta] = useState(false);
-  const [valorMeta, setValorMeta] = useState("");
 
   const { categorias } = useCategoriaContext();
 
@@ -78,8 +74,6 @@ export const DialogNovaTransacao = ({
     setTipo("");
     setValor("");
     setData("");
-    setDestinarParaMeta(false);
-    setValorMeta("");
   }, [
     resetFormTrigger,
     setCategoria,
@@ -92,16 +86,10 @@ export const DialogNovaTransacao = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let inputValue = e.target.value;
 
-    // mantém apenas números
     inputValue = inputValue.replace(/\D/g, "");
 
-    // salva o valor numérico "cru" (sem formatação) em valorMeta
-    setValorMeta(inputValue);
-
-    // converte para número em centavos
     const numero = parseFloat(inputValue) / 100;
 
-    // formata para BRL e salva em valor (campo visível)
     if (!isNaN(numero)) {
       const formatado = numero.toLocaleString("pt-BR", {
         style: "currency",
@@ -280,43 +268,7 @@ export const DialogNovaTransacao = ({
             },
           }}
         />
-
-        <Box sx={{ width: "100%" }}>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={destinarParaMeta}
-                onChange={(e) => setDestinarParaMeta(e.target.checked)}
-                sx={{
-                  color: "#00B37E",
-                  "&.Mui-checked": { color: "#00B37E" },
-                }}
-              />
-            }
-            label="Deseja destinar uma parte do valor para alguma meta?"
-          />
-
-          <Collapse in={destinarParaMeta}>
-            <Box sx={{ width: "100%", boxSizing: "border-box" }}>
-              <TextField
-                label="Valor"
-                placeholder="R$ 0,00"
-                value={valorMeta}
-                onChange={handleChange}
-                sx={{
-                  "& .MuiInputBase-root": {
-                    color: "#E1E1E6",
-                    bgcolor: "#121214",
-                    borderRadius: 2,
-                  },
-                  "& .MuiInputLabel-root": {
-                    color: "#A9A9B2",
-                  },
-                }}
-              />
-            </Box>
-          </Collapse>
-        </Box>
+        
       </DialogContent>
       <DialogActions sx={{ mt: 2, px: 0 }}>
         <Button
