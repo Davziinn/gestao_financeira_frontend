@@ -64,7 +64,7 @@ export const Header = () => {
                 }}
                 onClick={handleOpenDialog}
             >
-                + Nova Transação
+                + NOVA TRANSAÇÃO
             </Button>
 
             <DialogNovaTransacao

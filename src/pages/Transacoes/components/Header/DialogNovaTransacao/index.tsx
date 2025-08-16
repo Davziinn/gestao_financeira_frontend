@@ -13,8 +13,8 @@ import {
   RadioGroup,
   TextField,
   Checkbox,
-  InputAdornment,
   Collapse,
+  DialogActions,
 } from "@mui/material";
 import { useCategoriaContext } from "../../../../../hooks/useCategoriaContext";
 
@@ -88,6 +88,30 @@ export const DialogNovaTransacao = ({
     setTipo,
     setValor,
   ]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let inputValue = e.target.value;
+
+    // mantém apenas números
+    inputValue = inputValue.replace(/\D/g, "");
+
+    // salva o valor numérico "cru" (sem formatação) em valorMeta
+    setValorMeta(inputValue);
+
+    // converte para número em centavos
+    const numero = parseFloat(inputValue) / 100;
+
+    // formata para BRL e salva em valor (campo visível)
+    if (!isNaN(numero)) {
+      const formatado = numero.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      });
+      setValor(formatado);
+    } else {
+      setValor("");
+    }
+  };
 
   return (
     <Dialog
@@ -242,16 +266,9 @@ export const DialogNovaTransacao = ({
 
         <TextField
           label="Valor"
-          placeholder="0,00"
+          placeholder="R$ 0,00"
           value={valor}
-          onChange={(e) => setValor(e.target.value)}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Box sx={{ color: "#E1E1E6", fontWeight: 600 }}>R$</Box>
-              </InputAdornment>
-            ),
-          }}
+          onChange={handleChange}
           sx={{
             "& .MuiInputBase-root": {
               color: "#E1E1E6",
@@ -260,9 +277,6 @@ export const DialogNovaTransacao = ({
             },
             "& .MuiInputLabel-root": {
               color: "#A9A9B2",
-            },
-            "& .MuiInputAdornment-root": {
-              color: "#E1E1E6",
             },
           }}
         />
@@ -285,89 +299,61 @@ export const DialogNovaTransacao = ({
           <Collapse in={destinarParaMeta}>
             <Box sx={{ width: "100%", boxSizing: "border-box" }}>
               <TextField
-                fullWidth
-                label="Valor para meta"
-                placeholder="0,00"
+                label="Valor"
+                placeholder="R$ 0,00"
                 value={valorMeta}
-                onChange={(e) => setValorMeta(e.target.value)}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Box sx={{ color: "#E1E1E6", fontWeight: 600 }}>R$</Box>
-                    </InputAdornment>
-                  ),
-                }}
+                onChange={handleChange}
                 sx={{
-                  mt: 2,
-                  width: "100%",
                   "& .MuiInputBase-root": {
                     color: "#E1E1E6",
                     bgcolor: "#121214",
                     borderRadius: 2,
-                    width: "100%",
-                    boxSizing: "border-box",
                   },
-                  "& .MuiInputLabel-root": { color: "#A9A9B2" },
-                  "& .MuiInputAdornment-root": {
-                    color: "#E1E1E6",
+                  "& .MuiInputLabel-root": {
+                    color: "#A9A9B2",
                   },
                 }}
               />
             </Box>
           </Collapse>
         </Box>
-
-        <Box sx={{ display: "flex", gap: 2, mt: 2, flexWrap: "wrap" }}>
-          <Button
-            onClick={onCancel}
-            variant="outlined"
-            sx={{
-              flex: "1 1 120px",
-              borderColor: "#F75A68",
-              color: "#F75A68",
-              fontWeight: 600,
-              fontSize: "1rem",
-              borderRadius: 2,
-              textTransform: "none",
-              py: 1.25,
-              "&:hover": {
-                bgcolor: "rgba(247, 90, 104, 0.08)",
-                borderColor: "#f94c5a",
-                boxShadow: "0 0 0 1px #f94c5a",
-              },
-            }}
-          >
-            CANCELAR
-          </Button>
-
-          <Button
-            variant="contained"
-            onClick={onConfirm}
-            disabled={!isFormValid}
-            sx={{
-              flex: "1 1 120px",
-              bgcolor: "#00B37E",
-              color: "#fff",
-              fontWeight: 600,
-              fontSize: "0.85rem",
-              borderRadius: 2,
-              textTransform: "none",
-              py: 1.25,
-              "&:hover": {
-                bgcolor: "#019466",
-                boxShadow: "0 0 0 1px #019466",
-              },
-              "&.Mui-disabled": {
-                bgcolor: "#2e2e2e",
-                color: "#777",
-                cursor: "not-allowed",
-              },
-            }}
-          >
-            CADASTRAR TRANSAÇÃO
-          </Button>
-        </Box>
       </DialogContent>
+      <DialogActions sx={{ mt: 2, px: 0 }}>
+        <Button
+          onClick={onCancel}
+          variant="outlined"
+          sx={{
+            textTransform: "uppercase",
+            fontWeight: 600,
+            borderColor: "#f44336",
+            color: "#f44336",
+            px: 3,
+            "&:hover": {
+              bgcolor: "rgba(244,67,54,0.1)",
+              borderColor: "#f44336",
+            },
+          }}
+        >
+          Cancelar
+        </Button>
+        <Button
+          variant="contained"
+          onClick={onConfirm}
+          disabled={!isFormValid}
+          sx={{
+            textTransform: "uppercase",
+            fontWeight: 600,
+            bgcolor: isFormValid ? "#4caf50" : "#2e2e2e",
+            color: isFormValid ? "#fff" : "#888",
+            px: 3,
+            "&:hover": {
+              bgcolor: isFormValid ? "#43a047" : "#2e2e2e",
+            },
+          }}
+        >
+          Cadastrar Transação
+        </Button>
+      </DialogActions>
     </Dialog>
   );
 };

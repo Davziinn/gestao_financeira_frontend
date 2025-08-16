@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Dialog,
+  DialogActions,
   DialogContent,
   DialogTitle,
   Fade,
@@ -19,7 +20,7 @@ import { useEffect, useState } from "react";
 interface DialogEditarCategoriaProps {
   id: string;
   open: boolean;
-  onConfirm: (nome: string, tipo: "entrada" | "saida") => void; // <-- Nova prop
+  onConfirm: (nome: string, tipo: "entrada" | "saida") => void;
   onCancel: () => void;
   categoriaParaEditar?: {
     id: string;
@@ -32,7 +33,7 @@ export const DialogEditarCategoria = ({
   id,
   open = false,
   onCancel,
-  onConfirm, // <-- Aceita a nova prop
+  onConfirm,
   categoriaParaEditar,
 }: DialogEditarCategoriaProps) => {
   const [tipo, setTipo] = useState<"entrada" | "saida">("entrada");
@@ -45,16 +46,10 @@ export const DialogEditarCategoria = ({
       setNome(categoriaParaEditar.nome);
       setTipo(categoriaParaEditar.tipo);
     } else {
-      // Opcional: limpa o formulário se o modal fechar sem salvar
       setNome("");
       setTipo("entrada");
     }
   }, [open, categoriaParaEditar]);
-
-  const handleSalvar = () => {
-    onConfirm(nome, tipo); // Chama a prop com os estados locais
-    onCancel(); // Fecha o modal
-  };
 
   return (
     <Dialog
@@ -221,60 +216,42 @@ export const DialogEditarCategoria = ({
         </Box>
       </DialogContent>
 
-      <Box sx={{ display: "flex", gap: 2, mt: 4, pt: 2 }}>
+      <DialogActions sx={{ mt: 2, px: 0 }}>
         <Button
           onClick={onCancel}
           variant="outlined"
-          fullWidth
           sx={{
-            borderColor: "#F75A68",
-            color: "#F75A68",
+            textTransform: "uppercase",
             fontWeight: 600,
-            fontSize: "1rem",
-            borderRadius: 2,
-            textTransform: "none",
-            py: 1.5,
-            transition: "all 0.2s ease",
+            borderColor: "#f44336",
+            color: "#f44336",
+            px: 3,
             "&:hover": {
-              bgcolor: "rgba(247, 90, 104, 0.08)",
-              borderColor: "#f94c5a",
-              boxShadow: "0 0 0 1px #f94c5a",
-              transform: "translateY(-1px)",
+              bgcolor: "rgba(244,67,54,0.1)",
+              borderColor: "#f44336",
             },
           }}
         >
-          CANCELAR
+          Cancelar
         </Button>
-
         <Button
           variant="contained"
-          fullWidth
-          onClick={handleSalvar} // Chama a função interna para salvar
+          onClick={() => onConfirm(nome, tipo)}
           disabled={!isFormValid}
           sx={{
-            bgcolor: "#00B37E",
-            color: "#fff",
+            textTransform: "uppercase",
             fontWeight: 600,
-            fontSize: "0.85rem",
-            borderRadius: 2,
-            textTransform: "none",
-            py: 1.5,
-            transition: "all 0.2s ease",
+            bgcolor: isFormValid ? "#4caf50" : "#2e2e2e",
+            color: isFormValid ? "#fff" : "#888",
+            px: 3,
             "&:hover": {
-              bgcolor: "#019466",
-              boxShadow: "0 8px 25px rgba(0, 179, 126, 0.3)",
-              transform: "translateY(-1px)",
-            },
-            "&.Mui-disabled": {
-              bgcolor: "#2e2e2e",
-              color: "#777",
-              cursor: "not-allowed",
+              bgcolor: isFormValid ? "#43a047" : "#2e2e2e",
             },
           }}
         >
-          SALVAR ALTERAÇÕES
+          Editar Categoria
         </Button>
-      </Box>
+      </DialogActions>
     </Dialog>
   );
 };
