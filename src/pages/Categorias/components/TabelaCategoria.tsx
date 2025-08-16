@@ -12,10 +12,10 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useCategoriaContext } from "../../../../hooks/useCategoriaContext";
-import { DialogEditarCategoria } from "../Dialogs/DialogEditarCategoria";
+import { useCategoriaContext } from "../../../hooks/useCategoriaContext";
+import { DialogEditarCategoria } from "./Dialogs/DialogEditarCategoria";
 import { useState } from "react";
-import { DialogExcluirCategoria } from "../Dialogs/DialogExcluirCategoria";
+import { DialogExcluirCategoria } from "./Dialogs/DialogExcluirCategoria";
 
 interface Categoria {
   id: string;

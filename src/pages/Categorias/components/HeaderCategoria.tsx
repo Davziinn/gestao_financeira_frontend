@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
-import { DialogAdicionarCategoria } from "../Dialogs/DialogAdicionarCategoria";
+import { DialogAdicionarCategoria } from "./Dialogs/DialogAdicionarCategoria";
 import { useState } from "react";
-import { useCategoriaContext } from "../../../../hooks/useCategoriaContext";
+import { useCategoriaContext } from "../../../hooks/useCategoriaContext";
 
 export function HeaderCategoria() {
   const [openDialogAdicionar, setOpenDialogAdicionar] = useState(false);

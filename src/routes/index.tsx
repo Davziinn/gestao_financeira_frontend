@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { DefaultLayout } from "../layouts";
 import { Dashboard } from "../pages/Dashboard";
-import { Transacoes } from "../pages/Transacoes";
+import { Transacoes } from "../pages/Transacoes/Transacoes";
 import { MetaFinanceira } from "../pages/MetaFinanceira";
 import { Relatorios } from "../pages/Relatorios";
 import { Categorias } from "../pages/Categorias";
