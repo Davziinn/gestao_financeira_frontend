@@ -14,7 +14,7 @@ import {
   RadioGroup,
   TextField,
 } from "@mui/material";
-import { useCategoriaContext } from "../../../../../hooks/useCategoriaContext";
+import { useCategoriaContext } from "../../../../hooks/useCategoriaContext";
 
 interface IDialogNovaTransacaoProps {
   id: string;

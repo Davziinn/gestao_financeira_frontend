@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Button, Container, Typography } from "@mui/material"
-import { DialogNovaTransacao } from "./DialogNovaTransacao"
-import { useTransacaoContext } from "../../../../hooks/useTransacaoContext"
+import { DialogNovaTransacao } from "./Dialogs/DialogNovaTransacao"
+import { useTransacaoContext } from "../../../hooks/useTransacaoContext"
 
 export const Header = () => {
     const [openDialog, setOpenDialog] = useState(false)
