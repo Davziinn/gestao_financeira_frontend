@@ -66,6 +66,7 @@ export const TabelaCategoria = () => {
     if (categoriaParaExcluir) {
       deletarCategoria(categoriaParaExcluir.id);
     }
+    handleCloseDialogs()
   };
 
   return (
