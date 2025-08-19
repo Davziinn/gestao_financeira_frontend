@@ -144,9 +144,7 @@ export const DialogEditarCategoria = ({
             value={nome}
             onChange={(e) => setNome(e.target.value)}
             autoFocus
-            InputLabelProps={{
-              sx: { color: "#A9A9B2" },
-            }}
+            InputLabelProps={{ shrink: true, style: { color: "#aaa" } }}
             InputProps={{
               sx: {
                 color: "#E1E1E6",
@@ -160,7 +158,7 @@ export const DialogEditarCategoria = ({
                   borderColor: "rgba(255, 255, 255, 0.2)",
                 },
                 "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "#00B37E",
+                  borderColor: "#4caf50",
                   borderWidth: "2px",
                 },
               },

@@ -134,9 +134,7 @@ export const DialogAdicionarCategoria = ({
             value={nome}
             onChange={(e) => setNome(e.target.value)}
             autoFocus
-            InputLabelProps={{
-              sx: { color: "#A9A9B2" },
-            }}
+            InputLabelProps={{ shrink: true, style: { color: "#aaa" } }}
             InputProps={{
               sx: {
                 color: "#E1E1E6",
@@ -150,7 +148,7 @@ export const DialogAdicionarCategoria = ({
                   borderColor: "rgba(255, 255, 255, 0.2)",
                 },
                 "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "#00B37E",
+                  borderColor: "#4caf50",
                   borderWidth: "2px",
                 },
               },
@@ -182,8 +180,8 @@ export const DialogAdicionarCategoria = ({
                 control={
                   <Radio
                     sx={{
-                      color: "#00B37E",
-                      "&.Mui-checked": { color: "#00B37E" },
+                      color: "#4caf50",
+                      "&.Mui-checked": { color: "#4caf50" },
                     }}
                   />
                 }

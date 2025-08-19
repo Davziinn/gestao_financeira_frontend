@@ -55,7 +55,6 @@ export const DialogNovaTransacao = ({
   data,
   setData,
 }: IDialogNovaTransacaoProps) => {
-
   const { categorias } = useCategoriaContext();
 
   useEffect(() => {
@@ -85,9 +84,7 @@ export const DialogNovaTransacao = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let inputValue = e.target.value;
-
     inputValue = inputValue.replace(/\D/g, "");
-
     const numero = parseFloat(inputValue) / 100;
 
     if (!isNaN(numero)) {
@@ -99,6 +96,19 @@ export const DialogNovaTransacao = ({
     } else {
       setValor("");
     }
+  };
+
+  const inputSx = {
+    bgcolor: "#121212",
+    borderRadius: 2,
+    color: "#fff",
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: "rgba(255,255,255,0.1)",
+    },
+    "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "#4caf50" },
+    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#4caf50",
+    },
   };
 
   return (
@@ -116,10 +126,6 @@ export const DialogNovaTransacao = ({
           borderRadius: 3,
           px: 3,
           py: 3,
-          maxWidth: "500px",
-          maxHeight: "90vh",
-          overflowX: "hidden",
-          overflowY: "auto",
         },
       }}
     >
@@ -143,29 +149,14 @@ export const DialogNovaTransacao = ({
           mt: 1,
           px: 0,
           py: 0,
-          overflow: "visible",
-          overflowX: "hidden",
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
-          scrollbarWidth: "none",
         }}
       >
         <TextField
           type="date"
           value={data}
           onChange={(e) => setData(e.target.value)}
-          InputLabelProps={{ shrink: true }}
-          sx={{
-            "& .MuiInputBase-root": {
-              color: "#E1E1E6",
-              bgcolor: "#121214",
-              borderRadius: 2,
-            },
-            "& .MuiInputLabel-root": {
-              color: "#A9A9B2",
-            },
-          }}
+          InputLabelProps={{ shrink: true, sx: { color: "#aaa" } }}
+          InputProps={{ sx: inputSx }}
         />
 
         <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
@@ -173,18 +164,9 @@ export const DialogNovaTransacao = ({
             label="Descrição"
             value={descricao}
             onChange={(e) => setDescricao(e.target.value)}
-            sx={{
-              flex: "1 1 200px",
-              minWidth: "200px",
-              "& .MuiInputBase-root": {
-                color: "#E1E1E6",
-                bgcolor: "#121214",
-                borderRadius: 2,
-              },
-              "& .MuiInputLabel-root": {
-                color: "#A9A9B2",
-              },
-            }}
+            InputLabelProps={{ shrink: true, style: { color: "#aaa" } }}
+            InputProps={{ sx: inputSx }}
+            sx={{ flex: "1 1 200px", minWidth: "200px" }}
           />
 
           <TextField
@@ -192,23 +174,9 @@ export const DialogNovaTransacao = ({
             label="Categoria"
             value={categoria}
             onChange={(e) => setCategoria(e.target.value)}
-            sx={{
-              flex: "1 1 200px",
-              minWidth: "200px",
-              "& .MuiInputBase-root": {
-                color: "#E1E1E6",
-                bgcolor: "#121214",
-                borderRadius: 2,
-              },
-              "& .MuiSelect-select": {
-                overflow: "hidden",
-                whiteSpace: "nowrap",
-                textOverflow: "ellipsis",
-              },
-              "& .MuiInputLabel-root": {
-                color: "#A9A9B2",
-              },
-            }}
+            InputLabelProps={{ shrink: true, style: { color: "#aaa" } }}
+            InputProps={{ sx: inputSx }}
+            sx={{ flex: "1 1 200px", minWidth: "200px" }}
           >
             {categorias.map((categoria) => (
               <MenuItem key={categoria.id} value={categoria.nome}>
@@ -219,7 +187,7 @@ export const DialogNovaTransacao = ({
         </Box>
 
         <FormControl>
-          <FormLabel sx={{ color: "#A9A9B2", mb: 1 }}>Tipo</FormLabel>
+          <FormLabel sx={{ color: "#aaa", mb: 1 }}>Tipo</FormLabel>
           <RadioGroup
             row
             value={tipo}
@@ -230,8 +198,8 @@ export const DialogNovaTransacao = ({
               control={
                 <Radio
                   sx={{
-                    color: "#00B37E",
-                    "&.Mui-checked": { color: "#00B37E" },
+                    color: "#4caf50",
+                    "&.Mui-checked": { color: "#4caf50" },
                   }}
                 />
               }
@@ -257,19 +225,11 @@ export const DialogNovaTransacao = ({
           placeholder="R$ 0,00"
           value={valor}
           onChange={handleChange}
-          sx={{
-            "& .MuiInputBase-root": {
-              color: "#E1E1E6",
-              bgcolor: "#121214",
-              borderRadius: 2,
-            },
-            "& .MuiInputLabel-root": {
-              color: "#A9A9B2",
-            },
-          }}
+          InputLabelProps={{ shrink: true, style: { color: "#aaa" } }}
+          InputProps={{ sx: inputSx }}
         />
-        
       </DialogContent>
+
       <DialogActions sx={{ mt: 2, px: 0 }}>
         <Button
           onClick={onCancel}
@@ -298,9 +258,7 @@ export const DialogNovaTransacao = ({
             bgcolor: isFormValid ? "#4caf50" : "#2e2e2e",
             color: isFormValid ? "#fff" : "#888",
             px: 3,
-            "&:hover": {
-              bgcolor: isFormValid ? "#43a047" : "#2e2e2e",
-            },
+            "&:hover": { bgcolor: isFormValid ? "#43a047" : "#2e2e2e" },
           }}
         >
           Cadastrar Transação

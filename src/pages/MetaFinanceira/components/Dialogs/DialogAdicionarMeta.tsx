@@ -80,7 +80,7 @@ export const DialogAdicionarMeta = ({
           variant="outlined"
           value={nome}
           onChange={(e) => setNome(e.target.value)}
-          InputLabelProps={{ style: { color: "#aaa" } }}
+          InputLabelProps={{ shrink: true, style: { color: "#aaa" } }}
           InputProps={{
             sx: {
               bgcolor: "#121212",
@@ -107,7 +107,7 @@ export const DialogAdicionarMeta = ({
           variant="outlined"
           value={valor}
           onChange={(e) => setValor(e.target.value)}
-          InputLabelProps={{ style: { color: "#aaa" } }}
+          InputLabelProps={{ shrink: true, style: { color: "#aaa" } }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start" sx={{ color: "#aaa" }}>

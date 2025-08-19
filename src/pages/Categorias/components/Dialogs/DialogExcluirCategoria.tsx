@@ -79,7 +79,7 @@ export const DialogExcluirCategoria = ({
           variant="contained"
           onClick={onConfirm}
           sx={{
-            bgcolor: "#00B37E",
+            bgcolor: "#4caf50",
             color: "#fff",
             fontWeight: 600,
             fontSize: "1rem",
@@ -87,8 +87,8 @@ export const DialogExcluirCategoria = ({
             textTransform: "none",
             py: 1.25,
             "&:hover": {
-              bgcolor: "#019466",
-              boxShadow: "0 0 0 1px #019466",
+              bgcolor: "#43a047",
+              boxShadow: "0 0 0 1px #43a047",
             },
             "&.Mui-disabled": {
               bgcolor: "#2e2e2e",

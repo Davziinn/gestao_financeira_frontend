@@ -4,7 +4,7 @@ import { Dashboard } from "../pages/Dashboard";
 import { Transacoes } from "../pages/Transacoes/Transacoes";
 import { MetaFinanceira } from "../pages/MetaFinanceira";
 import { Relatorios } from "../pages/Relatorios";
-import { Categorias } from "../pages/Categorias";
+import { Categorias } from "../pages/Categorias/Categorias";
 import { Notificacao } from "../pages/Notificacoes";
 import { Configuracoes } from "../pages/Configuracoes";
 import { Cadastro } from "../pages/Cadastro";

@@ -97,8 +97,8 @@ export const DialogDeletarTransacao = ({
               textTransform: "none",
               py: 1.25,
               "&:hover": {
-                bgcolor: "#019466",
-                boxShadow: "0 0 0 1px #019466",
+                bgcolor: "#43a047",
+                boxShadow: "0 0 0 1px #43a047",
               },
               "&.Mui-disabled": {
                 bgcolor: "#2e2e2e",

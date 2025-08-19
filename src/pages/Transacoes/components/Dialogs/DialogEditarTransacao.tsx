@@ -166,7 +166,7 @@ export const DialogEditarTransacao = ({
           type="date"
           value={data}
           onChange={(e) => setData(e.target.value)}
-          InputLabelProps={{ shrink: true }}
+          InputLabelProps={{ shrink: true, style: { color: "#aaa" } }}
           sx={{
             "& .MuiInputBase-root": {
               color: "#E1E1E6",
@@ -242,8 +242,8 @@ export const DialogEditarTransacao = ({
               control={
                 <Radio
                   sx={{
-                    color: "#00B37E",
-                    "&.Mui-checked": { color: "#00B37E" },
+                    color: "#4caf50",
+                    "&.Mui-checked": { color: "#4caf50" },
                   }}
                 />
               }
